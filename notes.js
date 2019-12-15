@@ -18,6 +18,7 @@ Installing:
 
 
 -------------------------------------
+
 Implement User Authentication System:
 
 / A 1 way process where we take a user password in plain text & translate it into a string that you can no longer reverse back into the password. /
@@ -32,14 +33,33 @@ Implement User Authentication System:
 
    - POSTMAN   : localhost:3300/api/auth/register
       - Test user register : SUCCESS 
-      
+      - Will not allow registration without a password! :)
+      - Username required!! :)
+
    - POSTMAN   : localhost:3300/api/auth/login
       - Test User Login    : SUCCESS
+
+   - SQLITE:
+      - Sqlite Studio  : Password successfully hashed 
+
+-------------------------------------
 
 
 
 
 -------------------------------------
+Implement the authenticate middleware inside /auth/authenticate-middleware.js.
+
+1. Added code to authenticate credentials.
+
+2. POSTMAN  :  localhost:3300/api/jokes
+   - RESULT    : "message": "invalid credentials"
+   - Test /register + /login THEN /api/jokes : Still invalid ??
+   - Fix: 
+      * Added ./authenticate-middleware.js to auth-router.js
+      * Also, made sure headers matched new users
+      * Resolved.
+
 
 
 
