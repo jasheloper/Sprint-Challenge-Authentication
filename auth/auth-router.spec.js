@@ -27,8 +27,8 @@ describe("Register Functionality", () => {
     const res = await request(server)
       .post("/api/auth/register")
       .send({
-        username: "pippin",
-        password: "merrysucks"
+        username: "shele",
+        password: "shele"
       });
     expect(res.type).toBe("application/json");
   });

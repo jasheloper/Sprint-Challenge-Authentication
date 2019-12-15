@@ -99,7 +99,7 @@ Write a minimum of 2 tests per API endpoint.
       - Added testing to knexfile.js
       - yarn add --dev jest  ~ this was the problem, tests can now run 
 
-      
+
 4. auth-router.js.spec.js
 
             - Describe 1  : Register
@@ -107,9 +107,25 @@ Write a minimum of 2 tests per API endpoint.
 
             - Describe 2  : Login
                2 tests: passed
+
+               
+5. Forgot about : Use JSON Web Tokens or Sessions and Cookies to persist authentication across requests.
                   
+1. npm install jsonwebtoken
 
+2. auth-router.js
+           *  const jwt = require('jsonwebtoken');
+           * Token code :
+               - gen token
+               - add to :  /register & /login 
+           * config > secrets.js : 'ilikebread'
 
+           * Getting errors in Postman : Error: Illegal arguments
+           
+           ... troubleshooting steps:
+               - npm install helmet --save
+               - npm install cors
+               - npm install router
 
 
 
