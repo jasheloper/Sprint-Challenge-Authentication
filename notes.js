@@ -70,7 +70,7 @@ Implement the authenticate middleware inside /auth/authenticate-middleware.js.
 
 Write a minimum of 2 tests per API endpoint.
 
-1. auth > auth.spec.js
+1. auth > auth-router.js.spec.js
 
 2. Update pckg json   :
    * "scripts": {
@@ -99,9 +99,14 @@ Write a minimum of 2 tests per API endpoint.
       - Added testing to knexfile.js
       - yarn add --dev jest  ~ this was the problem, tests can now run 
 
-4. auth.spec.js
+      
+4. auth-router.js.spec.js
+
             - Describe 1  : Register
+               2 tests: passed
+
             - Describe 2  : Login
+               2 tests: passed
                   
 
 
