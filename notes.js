@@ -21,7 +21,7 @@ Installing:
 
 Implement User Authentication System:
 
-/ A 1 way process where we take a user password in plain text & translate it into a string that you can no longer reverse back into the password. /
+ A 1-way process where we take a user password in plain text & translate it into a string that you can no longer reverse back into the password. 
 
 
 - npm install bcryptjs
@@ -45,9 +45,11 @@ Implement User Authentication System:
 -------------------------------------
 
 
+////////////////////
 
 
 -------------------------------------
+
 Implement the authenticate middleware inside /auth/authenticate-middleware.js.
 
 1. Added code to authenticate credentials.
@@ -59,6 +61,48 @@ Implement the authenticate middleware inside /auth/authenticate-middleware.js.
       * Added ./authenticate-middleware.js to auth-router.js
       * Also, made sure headers matched new users
       * Resolved.
+      
+-------------------------------------
+
+
+////////////////////
+
+
+Write a minimum of 2 tests per API endpoint.
+
+1. auth > auth.spec.js
+
+2. Update pckg json   :
+   * "scripts": {
+    "server": "nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest --watch --verbose",
+    "start": "node index.js"
+  },
+
+
+3. Dependencies   :
+      - npm install supertest --save-dev
+
+
+// Something wasn't working when I started 'yarn test' so installing these was a part of troubleshooting to make sure dependencies wasn't the problem: 
+
+      - npm i --save-dev supertest
+      - npm install --save-dev cross-env
+      - npm install dotenv
+      - npm install knex
+      - npm install sqlite3 --save
+      - Add to json :
+                     "jest": {
+            "testEnvirnoment": "node"
+            }
+      - index.js - require('dotenv').config();
+      - Added testing to knexfile.js
+      - yarn add --dev jest  ~ this was the problem, tests can now run 
+
+4. auth.spec.js
+            - Describe 1  : Register
+            - Describe 2  : Login
+                  
 
 
 
