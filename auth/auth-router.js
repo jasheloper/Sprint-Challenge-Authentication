@@ -5,7 +5,7 @@ const secrets = require("../config/secrets");
 
 const Users = require("../users/users-model.js");
 
-const authorize = require("./authenticate-middleware.js");
+// const authorize = require("./authenticate-middleware.js");
 
 router.post("/register", (req, res) => {
   let user = req.body;
@@ -14,22 +14,36 @@ router.post("/register", (req, res) => {
 
   Users.add(user)
     .then(saved => {
+
+
+      ///////// token   /////////
       const token = genToken(saved);
+
+
+      ///////// saved + token   /////////
       res.status(201).json({ created_user: saved, token: token });
-      console.log(saved)
+
     })
+
+
+
     .catch(error => {
       res.status(500).json(error);
     });
 });
 
-router.post("/login", authorize, (req, res) => {
+
+
+
+router.post("/login", (req, res) => {
   let { username, password } = req.body;
 
   Users.findBy({ username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
+
+        ///////// token   /////////
         const token = genToken(user);
 
         res.status(200).json({ 

@@ -126,6 +126,9 @@ Write a minimum of 2 tests per API endpoint.
                - npm install helmet --save
                - npm install cors
                - npm install router
+               - Had not selected the content type in Postman, oy!
+         
+            * Token now works but getting a 401 unauthorized 
 
 
 
