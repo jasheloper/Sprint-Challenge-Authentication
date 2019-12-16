@@ -129,6 +129,13 @@ Write a minimum of 2 tests per API endpoint.
                - Had not selected the content type in Postman, oy!
          
             * Token now works but getting a 401 unauthorized 
+               - Updated authenticate-middleware file 
+            
+            * Test out by:
+               - Stop server
+               - Start server
+               - Get jokes again 
+               - OK good, I can still see jokes, great 
 
 
 
