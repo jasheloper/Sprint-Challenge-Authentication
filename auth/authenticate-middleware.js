@@ -1,23 +1,30 @@
-const jwt = require("jsonwebtoken");
-const secrets = require("../config/secrets.js");
+const users = require('../users/users-model.js');
+const bcrypt = require('bcryptjs');
+
 
 module.exports = (req, res, next) => {
-  const token = req.headers.authorization;
-
-  if (req.decodedJwt) {
-    next();
-  } else if (token) {
-    jwt.verify(token, secrets.jwtSecret, (err, decodedJwt) => {
-      // if the token doesn't verify
-      if (err) {
-        res.status(401).json({ you: "shall not pass!" });
-        // if it DOES...
-      } else {
-        req.decodedJwt = decodedJwt;
-        next();
-      }
-    });
-  } else {
-    res.status(401).json({ you: "can't touch that." });
-  }
-};
+    // look for the credentials
+    const { username, password } = req.headers
+    // validate that they exist ... we didn't have this part in class...
+    if (!(username && password)) {
+        res.status(401).json({ message: "invalid credentials" });
+    } else {
+        // find the user in the DB
+        users.findBy({ username })
+            // limit the resulting array to the first element, so we have an
+            // element and not an array to work with...
+            .first()
+            .then(_user => {
+                
+                if (_user && bcrypt.compareSync(password, _user.password)) {
+               
+                    next()
+                } else {
+            
+                    res.status(401).json({ messege: "Invalid Credentials" })
+                }
+            })
+            // if there is a DB problem... or other problem on our end...
+            .catch((err) => { res.status(500).json({ messege: err }) })
+    }
+}
